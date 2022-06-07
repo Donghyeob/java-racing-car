@@ -1,18 +1,18 @@
-package racingcar;
+package racingcar.domain;
 
 public class Car {
 
     private CarName carName;
-    private CarDistance carDistance;
+    private CarPosition carPosition;
 
     public Car(String name) {
         this.carName = new CarName(name);
-        this.carDistance = new CarDistance();
+        this.carPosition = new CarPosition();
     }
 
     public void move(int random) {
         if(random >= 4) {
-            this.carDistance.move();
+            this.carPosition.move();
         }
     }
 
@@ -21,11 +21,11 @@ public class Car {
     }
 
     public int getDistance() {
-        return this.carDistance.getDistance();
+        return this.carPosition.getDistance();
     }
 
     public String getDisplayDis() {
         return this.carName.getName() + " : "
-                + this.carDistance.getDisplayDis();
+                + this.carPosition.getDisplayDis();
     }
 }

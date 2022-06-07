@@ -1,6 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-public class CarDistance {
+public class CarPosition {
     private int distance = 0;
     private String displayDis = "";
 

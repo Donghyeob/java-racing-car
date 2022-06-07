@@ -1,14 +1,14 @@
-package racingcar;
+package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarGenerator {
+public class Cars {
     private List<Car> cars;
 
-    public CarGenerator(String names) {
+    public Cars(String names) {
         this.cars = forCars(names);
     }
 

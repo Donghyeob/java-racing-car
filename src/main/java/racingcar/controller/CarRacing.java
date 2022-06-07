@@ -1,7 +1,9 @@
-package racingcar;
+package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import common.CommonCode;
+import racingcar.common.ErrorCode;
+import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class CarRacing {
-    private CarGenerator carGenerator;
+    private Cars carGenerator;
     List<Integer> distance = new ArrayList<>();
     String winners = "";
     int count;
@@ -21,7 +23,7 @@ public class CarRacing {
     }
     public void initCar() {
         try {
-            this.carGenerator = new CarGenerator(inputName());
+            this.carGenerator = new Cars(inputName());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             validateError(String.valueOf(e).matches(".*[ERROR].*"));
@@ -41,7 +43,6 @@ public class CarRacing {
         for(Car winner : carGenerator.getCars()){
             distance.add(winner.getDistance());
         }
-        Collections.max(distance);
         for (Car winner : carGenerator.getCars()) {
             winners = winnerNames(winner, Collections.max(distance));
         }
@@ -60,13 +61,13 @@ public class CarRacing {
     }
 
     public String inputName() {
-        System.out.println(CommonCode.INPUT_CAR_NAME_MESSAGE.getMessage());
+        System.out.println(ErrorCode.INPUT_CAR_NAME_MESSAGE.getMessage());
         return Console.readLine().trim();
     }
 
     public int inputCount() {
         try {
-            System.out.println(CommonCode.INPUT_ROUND_COUNT_MESSAGE.getMessage());
+            System.out.println(ErrorCode.INPUT_ROUND_COUNT_MESSAGE.getMessage());
             String count = Console.readLine();
             validateNumeric(count);
         } catch (IllegalArgumentException e) {
@@ -79,7 +80,7 @@ public class CarRacing {
         try {
             this.count = Integer.parseInt(count);
         } catch (InputMismatchException e) {
-            throw new IllegalArgumentException(CommonCode.INPUT_INTEGER_ERR.getMessage());
+            throw new IllegalArgumentException(ErrorCode.INPUT_INTEGER_ERR.getMessage());
         }
     }
 }
