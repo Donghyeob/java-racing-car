@@ -1,20 +1,21 @@
 package racingcar.domain;
 
 public class CarPosition {
-    private int distance = 0;
-    private String displayDis = "";
 
+    private static final int FORWARD_CONDITION = 4;
+    private Integer count;
 
-    public void move() {
-        this.distance++;
-        this.displayDis += '-';
+    CarPosition() {
+        this.count = 0;
     }
 
-    public String getDisplayDis() {
-        return this.displayDis;
+    public void forwardPosition(int moveNumber) {
+        if (moveNumber >= FORWARD_CONDITION) {
+            this.count++;
+        }
     }
 
-    public int getDistance() {
-        return this.distance;
+    public Integer getCount() {
+        return count;
     }
 }

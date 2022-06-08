@@ -2,30 +2,27 @@ package racingcar.domain;
 
 public class Car {
 
-    private CarName carName;
-    private CarPosition carPosition;
+    private final CarName carName;
+    private final CarPosition carPosition;
 
-    public Car(String name) {
-        this.carName = new CarName(name);
-        this.carPosition = new CarPosition();
+    public Car(CarName carName, CarPosition carPosition) {
+        this.carName = carName;
+        this.carPosition = carPosition;
     }
 
-    public void move(int random) {
-        if(random >= 4) {
-            this.carPosition.move();
-        }
+    public static Car newCar(String name) {
+        return new Car(new CarName(name), new CarPosition());
+    }
+
+    public void move(int moveNumber) {
+        this.carPosition.forwardPosition(moveNumber);
     }
 
     public String getName() {
         return this.carName.getName();
     }
 
-    public int getDistance() {
-        return this.carPosition.getDistance();
-    }
-
-    public String getDisplayDis() {
-        return this.carName.getName() + " : "
-                + this.carPosition.getDisplayDis();
+    public int getPosition() {
+        return this.carPosition.getCount();
     }
 }

@@ -6,31 +6,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private List<Car> cars;
+    private final List<Car> cars;
 
-    public Cars(String names) {
-        this.cars = forCars(names);
+    public Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public List<Car> forCars(String names) {
+    public static Cars newCars(String names) {
+        List<Car> cars = new ArrayList<>();
         String[] carNames = names.replaceAll(" ", "").split(",");
-        this.cars = new ArrayList<>();
 
-        for(String name : carNames) {
-            cars.add(new Car(name));
+        for(String carName : carNames) {
+            cars.add(Car.newCar(carName));
         }
 
-        return cars;
+        return new Cars(cars);
     }
 
     public List<Car> getCars() {
         return this.cars;
     }
 
-    public void carMove() {
+    public void move() {
         for(Car car : cars) {
             car.move(Randoms.pickNumberInRange(0, 9));
-            System.out.println(car.getDisplayDis());
         }
     }
 }

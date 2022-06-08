@@ -1,6 +1,7 @@
 package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import racingcar.common.CommonCode;
 import racingcar.common.ErrorCode;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
@@ -41,7 +42,7 @@ public class CarRacing {
 
     public void winner() {
         for(Car winner : carGenerator.getCars()){
-            distance.add(winner.getDistance());
+//            distance.add(winner.getDistance());
         }
         for (Car winner : carGenerator.getCars()) {
             winners = winnerNames(winner, Collections.max(distance));
@@ -50,9 +51,9 @@ public class CarRacing {
     }
 
     public String winnerNames(Car winner, int maxDis) {
-        if(winner.getDistance() == maxDis) {
-            winners+=winner.getName() + ",";
-        }
+//        if(winner.getDistance() == maxDis) {
+//            winners+=winner.getName() + ",";
+//        }
         return winners;
     }
 
@@ -61,13 +62,13 @@ public class CarRacing {
     }
 
     public String inputName() {
-        System.out.println(ErrorCode.INPUT_CAR_NAME_MESSAGE.getMessage());
+        System.out.println(CommonCode.INPUT_CAR_NAME_MESSAGE);
         return Console.readLine().trim();
     }
 
     public int inputCount() {
         try {
-            System.out.println(ErrorCode.INPUT_ROUND_COUNT_MESSAGE.getMessage());
+            System.out.println(CommonCode.INPUT_ROUND_COUNT_MESSAGE);
             String count = Console.readLine();
             validateNumeric(count);
         } catch (IllegalArgumentException e) {
@@ -80,7 +81,7 @@ public class CarRacing {
         try {
             this.count = Integer.parseInt(count);
         } catch (InputMismatchException e) {
-            throw new IllegalArgumentException(ErrorCode.INPUT_INTEGER_ERR.getMessage());
+            throw new IllegalArgumentException(ErrorCode.INPUT_INTEGER_ERR);
         }
     }
 }
